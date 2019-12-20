@@ -3,9 +3,9 @@ from doubly_linked_list import DoublyLinkedList
 
 class RingBuffer:
     def __init__(self, capacity):
-        self.capacity = capacity
+        self.capacity = capacity  # the max or limit
         self.current = 0
-        self.storage = DoublyLinkedList()
+        self.storage = DoublyLinkedList()  # your methods
 
     def append(self, item):  # adds elements to the buffer
         # when full, the oldest element is overwritten with the newest
@@ -13,9 +13,11 @@ class RingBuffer:
         # append element at the end of the buffer
         # data append in head (newest), data pop from tail (oldest)
         if self.current >= self.capacity:
-            self.storage.remove_from_tail(
-                self.current)  # remove the oldest item
-            self.storage.add_to_head(self.current, item)
+            self.storage.remove_from_tail()  # remove the oldest item
+        # self.storage.add_to_head(item)
+            self.current -= 1
+        self.storage.add_to_head(item)
+        self.current += 1
 
     def get(self):  # returns all elements in an ordered list
         # except for NONE
