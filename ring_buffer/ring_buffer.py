@@ -37,7 +37,7 @@ class RingBuffer:
             self.storage.move_to_end(current_head)
             # ^ shift the head to the tail
             num += 1  # counter by 1
-        return list_buffer_contents
+        return list_buffer_contents.reverse()
 
 
 # ----------------Stretch Goal-------------------
